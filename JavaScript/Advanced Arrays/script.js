@@ -13,7 +13,7 @@ const mapArray = array.map(num => num * 2);
 
 console.log('map', mapArray);
 
-//map - forma mais rapida e facil de fazer loop criando um novo array, no caso, pegou todos os numeros presentes no "array" e criou um novo com multiplicando todos por 2.
+//map - forma mais rapida e facil de fazer loop criando um novo array, no caso, pegou todos os numeros presentes no "array" e criou um novo multiplicando todos por 2.
 
 //filter
 const filterArray = array.filter(num => num > 5);

@@ -19,6 +19,14 @@ h1 {
     justify-content: center;
 }
 
+.sec1 h2 img {
+    
+}
+
+.sec1 h2 {
+max-width: 200px;
+}
+
 img {
     width: 450px;
     height: 300px;
