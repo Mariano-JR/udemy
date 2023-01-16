@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import './App.css'
-import CardList from './CardList';
-import SearchBox from './SearchBox';
+import CardList from '../components/CardList';
+import Scroll from '../components/Scroll'
+import SearchBox from '../components/SearchBox';
 
 class App extends Component { //Conversão da function App em class App para a utilização de constructor
     constructor() {
@@ -23,28 +24,29 @@ class App extends Component { //Conversão da function App em class App para a u
     }
 
     render(){
-        const filterRobots = this.state.robots.filter(robots => {// Filter criado para a comparação entre o searchfield com a matriz de robots
-            return robots.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
-        })
-        if(this.state.robots.length === 0) {
-            return (
-                <div className="tc">
-                    <h1 className="f1">Robofriends</h1>
-                    <SearchBox searchChange={ this.onSearchChange } />
-                    <h2>Loading...</h2>
+        const { robots, searchfield } = this.state
 
-                </div>
-            )
-        } else {
-            return (// O component SearchBox ativa a function onSeachChange para a alteração do searchfield
+        const filterRobots = robots.filter(robot => {// Filter criado para a comparação entre o searchfield com a matriz de robots
+            return robot.name.toLowerCase().includes(searchfield.toLowerCase());
+        })
+        
+        return !robots.length ? (
+            <div className="tc">
+                <h1 className="f1">Robofriends</h1>
+                <SearchBox searchChange={ this.onSearchChange } />
+                <h2>Loading...</h2>
+
+            </div>
+        ) : (// O component SearchBox ativa a function onSeachChange para a alteração do searchfield
                     // Enquanto o CardList utiliza o filter filterRobots para fazer a comparação entre o searchfield e a matriz robots
-                <div className="tc">
-                    <h1 className="f1">RoboFriends</h1>
-                    <SearchBox searchChange={ this.onSearchChange }/>
+            <div className="tc">
+                <h1 className="f1">RoboFriends</h1>
+                <SearchBox searchChange={ this.onSearchChange }/>
+                <Scroll>
                     <CardList robots={ filterRobots }/>
-                </div>
-            );
-        }
+                </Scroll>
+            </div>
+        );
     }
 }
 
